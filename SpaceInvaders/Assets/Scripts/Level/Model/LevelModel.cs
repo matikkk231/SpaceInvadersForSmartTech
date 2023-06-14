@@ -14,7 +14,7 @@ namespace Level.Model
         private int _currentRound;
         public Action<RoundConfig, List<MonsterModel>> RoundStarted { get; set; }
 
-        public Vector2 LevelScale { get; }
+        public Vector2Int LevelScale { get; }
 
         public LevelModel(LevelConfig config)
         {
@@ -26,6 +26,10 @@ namespace Level.Model
         {
             SpawnMonsters(_rounds[_currentRound]);
             RoundStarted?.Invoke(_rounds[_currentRound], _monsters);
+            foreach (var monster in _monsters)
+            {
+                monster.Move();
+            }
         }
 
         private void SpawnMonsters(RoundConfig roundConfig)
@@ -39,7 +43,7 @@ namespace Level.Model
                     throw new Exception("monster spawn position out of border");
                 }
 
-                _monsters.Add(new MonsterModel(monsterConfig));
+                _monsters.Add(new MonsterModel(monsterConfig, LevelScale));
             }
         }
 

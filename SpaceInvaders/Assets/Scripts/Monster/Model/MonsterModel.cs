@@ -1,20 +1,27 @@
 using System;
+using Monster.View;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Monster.Model
 {
     public class MonsterModel : IMonsterModel
     {
+        public Action<MovingDirection> Moved { get; set; }
         public Action Attacked { get; set; }
 
+        private readonly Vector2Int _levelScale;
         public MonsterType Type { get; set; }
+
         public Vector2Int Position { get; set; }
+
         public int Health { get; set; }
 
-        public MonsterModel(MonsterConfig config)
+        public MonsterModel(MonsterConfig config, Vector2Int levelScale)
         {
             Position = config.Position;
             Type = config.Type;
+            _levelScale = levelScale;
 
             switch (Type)
             {
@@ -28,6 +35,66 @@ namespace Monster.Model
         public void Attack()
         {
             Attacked?.Invoke();
+        }
+
+        public void Move()
+        {
+            if (Position.x == _levelScale.x && (Position.y % 2 != 0))
+            {
+                MoveDown();
+                return;
+            }
+
+            if (Position.x == _levelScale.x && (Position.y % 2 == 0))
+            {
+                MoveLeft();
+                return;
+            }
+
+            if (Position.x == -_levelScale.x && (Position.y % 2 == 0))
+            {
+                MoveDown();
+                return;
+            }
+
+            if (Position.x == -_levelScale.x && (Position.y % 2 != 0))
+            {
+                MoveRight();
+                return;
+            }
+
+            var absPositionX = math.abs(Position.x);
+            if (absPositionX != _levelScale.x && (Position.y % 2 != 0))
+            {
+                MoveRight();
+                return;
+            }
+
+            if (absPositionX != _levelScale.x && (Position.y % 2 == 0))
+            {
+                MoveLeft();
+            }
+        }
+
+        private void MoveDown()
+        {
+            var oldPosition = Position;
+                Position = new Vector2Int(oldPosition.x, oldPosition.y - 1);
+                Moved?.Invoke(MovingDirection.Down);
+        }
+
+        private void MoveLeft()
+        {
+            var oldPosition = Position;
+            Position = new Vector2Int(oldPosition.x - 1, oldPosition.y);
+            Moved?.Invoke(MovingDirection.Left);
+        }
+
+        private void MoveRight()
+        {
+            var oldPosition = Position;
+            Position = new Vector2Int(oldPosition.x + 1, oldPosition.y);
+            Moved?.Invoke(MovingDirection.Right);
         }
     }
 }

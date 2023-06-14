@@ -9,6 +9,5 @@ namespace Round
     {
         public List<MonsterConfig> MonsterConfigs;
         public int RoundSpeed;
-        public Vector2Int RoundBorders;
     }
 }

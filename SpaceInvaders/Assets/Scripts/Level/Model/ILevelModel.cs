@@ -10,7 +10,7 @@ namespace Level.Model
     {
         Action<RoundConfig, List<MonsterModel>> RoundStarted { get; set; }
 
-        Vector2 LevelScale { get; }
+        Vector2Int LevelScale { get; }
 
         void StartLevel();
     }
