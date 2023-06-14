@@ -1,10 +1,11 @@
+using System;
 using Level.Config;
 using Level.Model;
 using Level.Presenter;
 using Level.View;
 using UnityEngine;
 
-public class Entry : MonoBehaviour
+public class Entry : MonoBehaviour, IDisposable
 {
     private ILevelModel _model;
     private LevelPresenter _presenter;
@@ -18,5 +19,15 @@ public class Entry : MonoBehaviour
         _view = Instantiate(_prefab).GetComponent<ILevelView>();
         _presenter = new LevelPresenter(_view, _model);
         _model.StartLevel();
+    }
+
+    private void OnDestroy()
+    {
+        Dispose();
+    }
+
+    public void Dispose()
+    {
+        _presenter?.Dispose();
     }
 }

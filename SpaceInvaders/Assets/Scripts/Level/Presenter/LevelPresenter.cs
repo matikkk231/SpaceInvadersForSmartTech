@@ -49,6 +49,10 @@ namespace Level.Presenter
         public void Dispose()
         {
             RemoveListeners();
+            foreach (var monsterPresenter in _monsterPresenters)
+            {
+                monsterPresenter.Dispose();
+            }
         }
     }
 }
