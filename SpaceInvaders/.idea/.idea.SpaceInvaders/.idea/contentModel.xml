@@ -10,6 +10,9 @@
         <e p="Scripts" t="Include">
           <e p="Entry.cs" t="Include" />
           <e p="Level" t="Include">
+            <e p="Config" t="Include">
+              <e p="LevelConfig.cs" t="Include" />
+            </e>
             <e p="Model" t="Include">
               <e p="ILevelModel.cs" t="Include" />
               <e p="LevelModel.cs" t="Include" />
@@ -24,9 +27,17 @@
           </e>
           <e p="Monster" t="Include">
             <e p="Model" t="Include">
+              <e p="IMonsterModel.cs" t="Include" />
               <e p="MonsterModel.cs" t="Include" />
             </e>
             <e p="MonsterConfig.cs" t="Include" />
+            <e p="Presenter" t="Include">
+              <e p="MonsterPresenter.cs" t="Include" />
+            </e>
+            <e p="View" t="Include">
+              <e p="IMonsterView.cs" t="Include" />
+              <e p="MonsterView.cs" t="Include" />
+            </e>
           </e>
           <e p="Round" t="Include">
             <e p="RoundConfig.cs" t="Include" />

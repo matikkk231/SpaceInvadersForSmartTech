@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Level.Config;
 using Monster.Model;
 using Round;
 using UnityEngine;
@@ -15,6 +16,12 @@ namespace Level.Model
 
         public Vector2 LevelScale { get; }
 
+        public LevelModel(LevelConfig config)
+        {
+            _rounds = config.Rounds;
+            LevelScale = config.Scale;
+        }
+
         public void StartLevel()
         {
             SpawnMonsters(_rounds[_currentRound]);
@@ -23,6 +30,7 @@ namespace Level.Model
 
         private void SpawnMonsters(RoundConfig roundConfig)
         {
+            _monsters = new List<MonsterModel>();
             foreach (var monsterConfig in roundConfig.MonsterConfigs)
             {
                 var isOutBorder = CheckMonsterOutBorder(monsterConfig.Position);
@@ -31,7 +39,7 @@ namespace Level.Model
                     throw new Exception("monster spawn position out of border");
                 }
 
-                _monsters.Add(new MonsterModel(monsterConfig.Position, monsterConfig.Type));
+                _monsters.Add(new MonsterModel(monsterConfig));
             }
         }
 

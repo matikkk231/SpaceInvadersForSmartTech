@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace Monster
 {
+    [Serializable]
     public class MonsterConfig
     {
         public MonsterType Type;

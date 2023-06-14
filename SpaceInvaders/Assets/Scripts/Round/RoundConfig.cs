@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Round
 {
-    public class RoundConfig
+    [CreateAssetMenu(menuName = "roundConfig")]
+    public class RoundConfig : ScriptableObject
     {
         public List<MonsterConfig> MonsterConfigs;
         public int RoundSpeed;

@@ -3,20 +3,20 @@ using UnityEngine;
 
 namespace Monster.Model
 {
-    public class MonsterModel
+    public class MonsterModel : IMonsterModel
     {
-        private Action<MonsterType> Attacked { get; set; }
+        public Action Attacked { get; set; }
 
-        private MonsterType Type;
-        private Vector2Int Postion;
-        private int Health;
+        public MonsterType Type { get; set; }
+        public Vector2Int Position { get; set; }
+        public int Health { get; set; }
 
-        public MonsterModel(Vector2Int position, MonsterType type)
+        public MonsterModel(MonsterConfig config)
         {
-            Postion = position;
-            Type = type;
+            Position = config.Position;
+            Type = config.Type;
 
-            switch (type)
+            switch (Type)
             {
                 case MonsterType.LittleMonster:
                     Health = 1;
@@ -27,7 +27,7 @@ namespace Monster.Model
 
         public void Attack()
         {
-            Attacked?.Invoke(Type);
+            Attacked?.Invoke();
         }
     }
 }

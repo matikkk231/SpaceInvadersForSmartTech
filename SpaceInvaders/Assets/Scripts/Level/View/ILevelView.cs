@@ -1,3 +1,5 @@
+using Monster;
+using Monster.View;
 using Round;
 using UnityEngine;
 
@@ -8,5 +10,6 @@ namespace Level.View
         Vector2 LevelScale { get; set; }
 
         void StartRound(RoundConfig roundConfig);
+        IMonsterView CreateMonsterView(MonsterType type, Vector2Int position);
     }
 }
