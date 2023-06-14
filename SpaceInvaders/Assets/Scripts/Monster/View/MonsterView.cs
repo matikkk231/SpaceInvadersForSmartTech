@@ -12,7 +12,7 @@ namespace Monster.View
         private float _speed = 0.8f;
         private MovingDirection _movingDirection;
         private Vector2 _positionShouldReach;
-        private float _distanceMeasure = 1;
+        private float _distanceBetweenPoints = 1;
         [SerializeField] private Transform _transform;
         [SerializeField] private Rigidbody2D _rigidbody;
 
@@ -75,31 +75,41 @@ namespace Monster.View
         {
             if (direction == MovingDirection.Down)
             {
-                _positionShouldReach = new Vector2(Position.x, Position.y - _distanceMeasure);
+                _positionShouldReach = new Vector2(Position.x, Position.y - _distanceBetweenPoints);
                 _movingDirection = MovingDirection.Down;
                 _rigidbody.velocity = Vector2.down * _speed;
             }
 
             if (direction == MovingDirection.Left)
             {
-                _positionShouldReach = new Vector2(Position.x - _distanceMeasure, Position.y);
+                _positionShouldReach = new Vector2(Position.x - _distanceBetweenPoints, Position.y);
                 _movingDirection = MovingDirection.Left;
                 _rigidbody.velocity = Vector2.left * _speed;
             }
 
             if (direction == MovingDirection.Right)
             {
-                _positionShouldReach = new Vector2(Position.x + _distanceMeasure, Position.y);
+                _positionShouldReach = new Vector2(Position.x + _distanceBetweenPoints, Position.y);
                 _movingDirection = MovingDirection.Right;
                 _rigidbody.velocity = Vector2.right * _speed;
             }
 
             if (direction == MovingDirection.Up)
             {
-                _positionShouldReach = new Vector2(Position.x, Position.y + _distanceMeasure);
+                _positionShouldReach = new Vector2(Position.x, Position.y + _distanceBetweenPoints);
                 _movingDirection = MovingDirection.Up;
                 _rigidbody.velocity = Vector2.up * _speed;
             }
+        }
+
+        public void SetDistanceBetweenPoints(float measure)
+        {
+            _distanceBetweenPoints = measure;
+        }
+
+        public void SetSpeed(float speed)
+        {
+            _speed = speed;
         }
 
 

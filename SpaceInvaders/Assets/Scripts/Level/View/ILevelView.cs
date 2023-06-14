@@ -11,5 +11,7 @@ namespace Level.View
 
         void StartRound(RoundConfig roundConfig);
         IMonsterView CreateMonsterView(MonsterType type, Vector2Int position);
+
+        void SetSpeed(float speed);
     }
 }

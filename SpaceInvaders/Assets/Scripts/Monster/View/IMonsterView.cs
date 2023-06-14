@@ -14,5 +14,7 @@ namespace Monster.View
         void Attack();
         void GetDamage(int damageAmount);
         void Move(MovingDirection direction);
+        void SetDistanceBetweenPoints(float measure);
+        void SetSpeed(float speed);
     }
 }
