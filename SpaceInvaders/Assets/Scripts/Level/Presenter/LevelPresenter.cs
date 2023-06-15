@@ -4,7 +4,10 @@ using Level.Model;
 using Level.View;
 using Monster.Model;
 using Monster.Presenter;
+using Player.Model;
+using Player.Presenter;
 using Round;
+using UnityEngine;
 
 namespace Level.Presenter
 {
@@ -15,6 +18,7 @@ namespace Level.Presenter
 
         private List<IDisposable> _roudns;
         private List<IDisposable> _monsterPresenters;
+        private IDisposable _player;
 
         public LevelPresenter(ILevelView view, ILevelModel model)
         {
@@ -33,7 +37,8 @@ namespace Level.Presenter
             _model.RoundStarted -= OnRoundStarted;
         }
 
-        private void OnRoundStarted(RoundConfig roundConfig, List<MonsterModel> monsterModels)
+        private void OnRoundStarted(RoundConfig roundConfig, List<IMonsterModel> monsterModels,
+            IPlayerModel playerModel)
         {
             _monsterPresenters = new List<IDisposable>();
             foreach (var monsterModel in monsterModels)
@@ -42,6 +47,9 @@ namespace Level.Presenter
                     new MonsterPresenter(_view.CreateMonsterView(monsterModel.Type, monsterModel.Position),
                         monsterModel));
             }
+
+            var startPlayerPosition = new Vector2Int(0, -_model.LevelScale.y);
+            _player = new PlayerPresenter(playerModel, _view.CreatePlayerView(startPlayerPosition));
 
             _view.StartRound(roundConfig);
         }

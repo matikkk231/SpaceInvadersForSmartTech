@@ -1,5 +1,6 @@
 using Monster;
 using Monster.View;
+using Player.View;
 using Round;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Level.View
 
         void StartRound(RoundConfig roundConfig);
         IMonsterView CreateMonsterView(MonsterType type, Vector2Int position);
+        IPlayerView CreatePlayerView(Vector2Int position);
 
         void SetSpeed(float speed);
     }

@@ -16,6 +16,12 @@ namespace Player.View
         [SerializeField] private GunView _gun;
         [SerializeField] private Rigidbody2D _rigidbody;
 
+        public Vector2 Position
+        {
+            get => transform.position;
+            set => transform.position = value;
+        }
+
         public void Attack(int damage)
         {
             _gun.Attack(damage);
