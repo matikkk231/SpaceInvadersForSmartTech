@@ -14,5 +14,6 @@ namespace Player.View
         Vector2 Position { get; set; }
 
         void GetDamage(int damage);
+        void Die();
     }
 }

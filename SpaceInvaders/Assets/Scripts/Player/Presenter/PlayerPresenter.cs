@@ -22,16 +22,30 @@ namespace Player.Presenter
         private void AddListeners()
         {
             _view.AttackPressed += OnAttackPressed;
+            _model.Died += OnDied;
+            _view.Damaged += OnDamaged;
         }
 
         private void RemoveListeners()
         {
             _view.AttackPressed -= OnAttackPressed;
+            _model.Died -= OnDied;
+            _view.Damaged -= OnDamaged;
         }
 
         private void OnAttackPressed()
         {
             _model.Attack();
+        }
+
+        private void OnDied()
+        {
+            _view.Die();
+        }
+
+        private void OnDamaged(int damage)
+        {
+            _model.Health -= damage;
         }
 
         public void Dispose()

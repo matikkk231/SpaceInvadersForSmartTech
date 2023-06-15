@@ -6,20 +6,33 @@ namespace Player.Model
     public class PlayerModel : IPlayerModel
     {
         public Action Died { get; set; }
-        public Action Attacked { get; set; }
 
         private const int _weaponDamage = 1;
         private readonly IGunModel _gunModel;
-        public int Health { get; set; }
+        private int _health;
+
+        public int Health
+        {
+            get => _health;
+            set
+            {
+                _health = value;
+                if (_health <= 0)
+                {
+                    Died?.Invoke();
+                }
+            }
+        }
 
         public IGunModel GunModel
         {
             get => _gunModel;
         }
 
-        public PlayerModel()
+        public PlayerModel(int health)
         {
             _gunModel = new GunModel(_weaponDamage);
+            _health = health;
         }
 
         public void Attack()

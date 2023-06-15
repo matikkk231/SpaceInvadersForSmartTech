@@ -6,7 +6,6 @@ namespace Player.Model
     public interface IPlayerModel
     {
         Action Died { get; set; }
-        Action Attacked { get; set; }
 
         int Health { get; set; }
         IGunModel GunModel { get; }

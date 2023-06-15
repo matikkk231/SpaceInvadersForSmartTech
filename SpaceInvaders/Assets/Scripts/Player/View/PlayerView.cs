@@ -41,6 +41,11 @@ namespace Player.View
             Damaged?.Invoke(damage);
         }
 
+        public void Die()
+        {
+            Destroy(this.gameObject);
+        }
+
         private void Move()
         {
             _movingDirection = Vector2.zero;

@@ -55,8 +55,7 @@ namespace Level.Model
 
         private IPlayerModel SpawnPlayer(RoundConfig roundConfig)
         {
-            _player = new PlayerModel();
-            _player.Health = _startPlayerHealth;
+            _player = new PlayerModel(_startPlayerHealth);
             return _player;
         }
 
