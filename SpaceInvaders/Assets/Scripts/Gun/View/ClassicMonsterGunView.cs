@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace Gun.View
 {
-    public class ClassicGunView : GunView
+    public class ClassicMonsterGunView : GunView
     {
         [SerializeField] private Transform _shootPosition;
         [SerializeField] private GameObject _bulletPref;
