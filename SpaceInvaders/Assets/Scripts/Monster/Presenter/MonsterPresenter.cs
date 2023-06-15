@@ -23,13 +23,13 @@ namespace Monster.Presenter
         private void AddListeners()
         {
             _model.Moved += OnMoved;
-            _view.ReachedKeyPoint += OnPoinReached;
+            _view.ReachedKeyPoint += OnPointReached;
         }
 
         private void RemoveListeners()
         {
             _model.Moved -= OnMoved;
-            _view.ReachedKeyPoint -= OnPoinReached;
+            _view.ReachedKeyPoint -= OnPointReached;
         }
 
         private void OnMoved(MovingDirection direction)
@@ -37,7 +37,7 @@ namespace Monster.Presenter
             _view.Move(direction);
         }
 
-        private void OnPoinReached()
+        private void OnPointReached()
         {
             _model.Move();
         }
