@@ -9,11 +9,26 @@ namespace Monster.Model
     public class MonsterModel : IMonsterModel
     {
         public Action<MovingDirection> Moved { get; set; }
+        public Action Died { get; set; }
 
         private readonly Vector2Int _levelScale;
+        private int _health;
         public MonsterType Type { get; set; }
         public Vector2Int Position { get; set; }
-        public int Health { get; set; }
+
+        public int Health
+        {
+            get => _health;
+            set
+            {
+                _health = value;
+                if (_health <= 0)
+                {
+                    Died?.Invoke();
+                }
+            }
+        }
+
         public IGunModel Gun { get; set; }
 
         public MonsterModel(MonsterConfig config, Vector2Int levelScale)

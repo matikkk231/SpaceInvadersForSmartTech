@@ -66,9 +66,9 @@ namespace Monster.View
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            var bulletView = other.collider.GetComponent<IBulletView>();
+            var bulletView = other.GetComponent<PlayerBulletView>();
             if (bulletView != null)
             {
                 GetDamage(bulletView.DamageAmount);
@@ -77,7 +77,7 @@ namespace Monster.View
 
         public void GetDamage(int damageAmount)
         {
-            throw new NotImplementedException();
+            Damaged?.Invoke(damageAmount);
         }
 
         public void Move(MovingDirection direction)
@@ -119,6 +119,11 @@ namespace Monster.View
         public void SetSpeed(float speed)
         {
             _speed = speed;
+        }
+
+        public void Die()
+        {
+            Destroy(this.gameObject);
         }
 
 

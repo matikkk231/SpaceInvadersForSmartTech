@@ -8,6 +8,7 @@ namespace Monster.Model
     public interface IMonsterModel
     {
         Action<MovingDirection> Moved { get; set; }
+        Action Died { get; set; }
 
         MonsterType Type { get; set; }
         Vector2Int Position { get; set; }

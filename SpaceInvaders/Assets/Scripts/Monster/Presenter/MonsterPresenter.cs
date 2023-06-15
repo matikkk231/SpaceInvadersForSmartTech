@@ -24,12 +24,16 @@ namespace Monster.Presenter
         {
             _model.Moved += OnMoved;
             _view.ReachedKeyPoint += OnPointReached;
+            _view.Damaged += OnDamaged;
+            _model.Died += OnDied;
         }
 
         private void RemoveListeners()
         {
             _model.Moved -= OnMoved;
             _view.ReachedKeyPoint -= OnPointReached;
+            _view.Damaged -= OnDamaged;
+            _model.Died -= OnDied;
         }
 
         private void OnMoved(MovingDirection direction)
@@ -40,6 +44,16 @@ namespace Monster.Presenter
         private void OnPointReached()
         {
             _model.Move();
+        }
+
+        private void OnDamaged(int damage)
+        {
+            _model.Health -= damage;
+        }
+
+        private void OnDied()
+        {
+            _view.Die();
         }
 
         public void Dispose()
