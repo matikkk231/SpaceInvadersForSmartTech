@@ -44,14 +44,14 @@ namespace Level.Presenter
             foreach (var monsterModel in monsterModels)
             {
                 _monsterPresenters.Add(
-                    new MonsterPresenter(_view.CreateMonsterView(monsterModel.Type, monsterModel.Position),
+                    new MonsterPresenter(
+                        _view.CreateMonsterView(monsterModel.Type, monsterModel.Position,
+                            _model.Rounds[_model.CurrentRound]),
                         monsterModel));
             }
 
             var startPlayerPosition = new Vector2Int(0, -_model.LevelScale.y);
             _player = new PlayerPresenter(playerModel, _view.CreatePlayerView(startPlayerPosition));
-
-            _view.StartRound(roundConfig);
         }
 
         public void Dispose()

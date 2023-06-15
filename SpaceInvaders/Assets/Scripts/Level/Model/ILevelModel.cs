@@ -12,6 +12,9 @@ namespace Level.Model
         Action<RoundConfig, List<IMonsterModel>, IPlayerModel> RoundStarted { get; set; }
 
         Vector2Int LevelScale { get; }
+        List<RoundConfig> Rounds { get; }
+
+        int CurrentRound { get; }
 
         void StartLevel();
     }
