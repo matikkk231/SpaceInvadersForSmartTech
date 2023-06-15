@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterConfigs:
   - Type: 0
-    Position: {x: 3, y: 1}
+    Position: {x: 1, y: 1}
   - Type: 0
     Position: {x: 0, y: 0}
   RoundSpeed: 1

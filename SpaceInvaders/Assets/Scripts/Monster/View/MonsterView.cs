@@ -1,4 +1,6 @@
 using System;
+using Bullet.View;
+using Gun.View;
 using UnityEngine;
 
 namespace Monster.View
@@ -6,24 +8,27 @@ namespace Monster.View
     public class MonsterView : MonoBehaviour, IMonsterView
     {
         public Action<int> Damaged { get; set; }
-        public Action PositionChanged { get; set; }
         public Action ReachedKeyPoint { get; set; }
+
+        public IGunView GunView
+        {
+            get => _gunView;
+        }
+
 
         private float _speed = 0.8f;
         private MovingDirection _movingDirection;
         private Vector2 _positionShouldReach;
         private float _distanceBetweenPoints = 1;
+
         [SerializeField] private Transform _transform;
         [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private GunView _gunView;
 
         public Vector2 Position
         {
             get => transform.position;
-            set
-            {
-                transform.position = value;
-                PositionChanged?.Invoke();
-            }
+            set { transform.position = value; }
         }
 
         private void Update()
@@ -61,9 +66,13 @@ namespace Monster.View
             }
         }
 
-        public void Attack()
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            throw new NotImplementedException();
+            var bulletView = other.collider.GetComponent<IBulletView>();
+            if (bulletView != null)
+            {
+                GetDamage(bulletView.DamageAmount);
+            }
         }
 
         public void GetDamage(int damageAmount)

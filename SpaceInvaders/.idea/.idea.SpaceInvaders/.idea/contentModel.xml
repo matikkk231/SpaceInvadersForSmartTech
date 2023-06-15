@@ -8,7 +8,27 @@
       <e p="Assembly-CSharp.Player.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
+          <e p="Bullet" t="Include">
+            <e p="View" t="Include">
+              <e p="BulletView.cs" t="Include" />
+              <e p="IBulletView.cs" t="Include" />
+            </e>
+          </e>
           <e p="Entry.cs" t="Include" />
+          <e p="Gun" t="Include">
+            <e p="Model" t="Include">
+              <e p="GunModel.cs" t="Include" />
+              <e p="IGunModel.cs" t="Include" />
+            </e>
+            <e p="Presenter" t="Include">
+              <e p="GunPresenter.cs" t="Include" />
+            </e>
+            <e p="View" t="Include">
+              <e p="ClassicGunView.cs" t="Include" />
+              <e p="GunView.cs" t="Include" />
+              <e p="IGunView.cs" t="Include" />
+            </e>
+          </e>
           <e p="Level" t="Include">
             <e p="Config" t="Include">
               <e p="LevelConfig.cs" t="Include" />

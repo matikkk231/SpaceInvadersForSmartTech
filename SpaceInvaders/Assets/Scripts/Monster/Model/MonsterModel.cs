@@ -1,4 +1,5 @@
 using System;
+using Gun.Model;
 using Monster.View;
 using Unity.Mathematics;
 using UnityEngine;
@@ -8,14 +9,12 @@ namespace Monster.Model
     public class MonsterModel : IMonsterModel
     {
         public Action<MovingDirection> Moved { get; set; }
-        public Action Attacked { get; set; }
 
         private readonly Vector2Int _levelScale;
         public MonsterType Type { get; set; }
-
         public Vector2Int Position { get; set; }
-
         public int Health { get; set; }
+        public IGunModel Gun { get; set; }
 
         public MonsterModel(MonsterConfig config, Vector2Int levelScale)
         {
@@ -27,6 +26,7 @@ namespace Monster.Model
             {
                 case MonsterType.LittleMonster:
                     Health = 1;
+                    Gun = new GunModel(1);
                     break;
                 default: throw new Exception("monster type not found");
             }
@@ -34,7 +34,7 @@ namespace Monster.Model
 
         public void Attack()
         {
-            Attacked?.Invoke();
+            Gun.Attack();
         }
 
         public void Move()
@@ -79,8 +79,8 @@ namespace Monster.Model
         private void MoveDown()
         {
             var oldPosition = Position;
-                Position = new Vector2Int(oldPosition.x, oldPosition.y - 1);
-                Moved?.Invoke(MovingDirection.Down);
+            Position = new Vector2Int(oldPosition.x, oldPosition.y - 1);
+            Moved?.Invoke(MovingDirection.Down);
         }
 
         private void MoveLeft()
