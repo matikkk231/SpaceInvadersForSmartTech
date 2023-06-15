@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7206233604890824476}
-  - component: {fileID: 8560523320273654627}
+  - component: {fileID: 5765454057740602911}
   - component: {fileID: 5028640961568034053}
   - component: {fileID: 4924972227799962372}
   m_Layer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8560523320273654627
+--- !u!114 &5765454057740602911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 976989994842439591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa323ab24184a5cbad0758ad4de4036, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d755e30f1574b72b83a3027cf88bdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 5028640961568034053}
@@ -79,8 +79,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.004983425, y: -0.009966701}
   m_SpriteTilingProperty:
