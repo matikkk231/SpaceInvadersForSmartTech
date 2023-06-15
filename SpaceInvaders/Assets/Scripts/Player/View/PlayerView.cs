@@ -9,12 +9,18 @@ namespace Player.View
     public class PlayerView : MonoBehaviour, IPlayerView
     {
         public Action<int> Damaged { get; set; }
-        public Action AttackStarted { get; set; }
+        public Action AttackPressed { get; set; }
 
         private float _speed = 3;
         private Vector2 _movingDirection = new Vector2();
         [SerializeField] private GunView _gun;
         [SerializeField] private Rigidbody2D _rigidbody;
+
+        public IGunView Gun
+        {
+            get => _gun;
+            set => _gun = (GunView) value;
+        }
 
         public Vector2 Position
         {
@@ -22,16 +28,11 @@ namespace Player.View
             set => transform.position = value;
         }
 
-        public void Attack(int damage)
-        {
-            _gun.Attack(damage);
-        }
-
         public void AttackNotify()
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space))
             {
-                AttackStarted?.Invoke();
+                AttackPressed?.Invoke();
             }
         }
 
@@ -76,6 +77,7 @@ namespace Player.View
         private void Update()
         {
             Move();
+            AttackNotify();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

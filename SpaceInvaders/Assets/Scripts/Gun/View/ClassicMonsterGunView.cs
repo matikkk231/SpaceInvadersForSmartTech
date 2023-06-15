@@ -7,10 +7,8 @@ namespace Gun.View
 {
     public class ClassicMonsterGunView : GunView
     {
-        [SerializeField] private Transform _shootPosition;
-        [SerializeField] private GameObject _bulletPref;
-        private const int _bulletSpeed = 1;
         private float _secTillNextAttack;
+        private const int _bulletSpeed = 1;
 
         private void Update()
         {

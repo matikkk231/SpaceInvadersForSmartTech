@@ -26,6 +26,7 @@
             </e>
             <e p="View" t="Include">
               <e p="ClassicMonsterGunView.cs" t="Include" />
+              <e p="ClassicPlayerGunView.cs" t="Include" />
               <e p="GunView.cs" t="Include" />
               <e p="IGunView.cs" t="Include" />
             </e>
