@@ -7,6 +7,8 @@ namespace Bullet.View
     {
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] protected GameObject _gameObject;
+        private float _timeInFly;
+        private const float _disappearingTime = 10;
         public int DamageAmount { get; set; }
 
         public Vector2 Velocity
@@ -22,6 +24,16 @@ namespace Bullet.View
         private void OnTriggerEnter(Collider other)
         {
             CollideWithObject(other);
+        }
+
+        private void Update()
+        {
+            _timeInFly += Time.deltaTime;
+
+            if (_timeInFly > _disappearingTime)
+            {
+                Destroy(_gameObject);
+            }
         }
 
         protected abstract void CollideWithObject(Collider collider);
