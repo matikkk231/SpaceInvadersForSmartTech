@@ -47,6 +47,10 @@ namespace Level.Model
             }
         }
 
+        private void SpawnPlayer(RoundConfig roundConfig)
+        {
+        }
+
         private bool CheckMonsterOutBorder(Vector2Int monsterPosition)
         {
             var isOutHorizontalBorder = monsterPosition.x > LevelScale.x || monsterPosition.x < -LevelScale.x;

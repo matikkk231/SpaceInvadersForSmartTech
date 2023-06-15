@@ -61,8 +61,16 @@
             </e>
           </e>
           <e p="Player" t="Include">
+            <e p="Model" t="Include">
+              <e p="IPlayerModel.cs" t="Include" />
+              <e p="PlayerModel.cs" t="Include" />
+            </e>
+            <e p="Presenter" t="Include">
+              <e p="PlayerPresenter.cs" t="Include" />
+            </e>
             <e p="View" t="Include">
               <e p="IPlayerView.cs" t="Include" />
+              <e p="PlayerView.cs" t="Include" />
             </e>
           </e>
           <e p="Round" t="Include">
