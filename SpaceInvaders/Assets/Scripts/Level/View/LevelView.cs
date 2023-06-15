@@ -37,10 +37,5 @@ namespace Level.View
             player.Position = new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
             return player;
         }
-
-        private void SetSpeed(float speed, IMonsterView monsterView)
-        {
-            monsterView.SetSpeed(speed);
-        }
     }
 }
