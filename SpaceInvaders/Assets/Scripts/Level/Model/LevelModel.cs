@@ -57,7 +57,9 @@ namespace Level.Model
                     throw new Exception("monster spawn position out of border");
                 }
 
-                monsters.Add(new MonsterModel(monsterConfig, LevelScale));
+                var monster = new MonsterModel(monsterConfig, LevelScale);
+                monster.Died += OnMonsterDied;
+                monsters.Add(monster);
             }
 
             return monsters;
@@ -80,6 +82,20 @@ namespace Level.Model
             }
 
             return false;
+        }
+
+        private void OnMonsterDied()
+        {
+            foreach (var monster in _monsters)
+            {
+                if (monster.Health <= 0)
+                {
+                    monster.Died -= OnMonsterDied;
+                    Debug.Log("monsterDied");
+                    _monsters.Remove(monster);
+                    break;
+                }
+            }
         }
     }
 }

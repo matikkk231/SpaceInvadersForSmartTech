@@ -10,10 +10,10 @@ namespace Monster.Model
         Action<MovingDirection> Moved { get; set; }
         Action Died { get; set; }
 
-        MonsterType Type { get; set; }
-        Vector2Int Position { get; set; }
+        MonsterType Type { get; }
+        Vector2Int Position { get; }
         int Health { get; set; }
-        IGunModel Gun { get; set; }
+        IGunModel Gun { get; }
 
         public void Attack();
         public void Move();

@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using Monster;
 using Monster.View;
 using Player.View;
 using Round;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Level.View
 {
@@ -16,7 +14,7 @@ namespace Level.View
         private IPlayerView _playerView;
 
         public Vector2 LevelScale { get; set; }
-        
+
 
         public IMonsterView CreateMonsterView(MonsterType type, Vector2Int position, RoundConfig roundConfig)
         {
