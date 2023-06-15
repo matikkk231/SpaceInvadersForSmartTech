@@ -72,7 +72,7 @@ namespace Player.View
             Move();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             var monsterView = other.GetComponent<IMonsterView>();
             if (monsterView != null)

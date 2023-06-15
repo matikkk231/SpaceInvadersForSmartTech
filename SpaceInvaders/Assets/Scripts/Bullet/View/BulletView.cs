@@ -21,7 +21,7 @@ namespace Bullet.View
             set => transform.position = value;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             CollideWithObject(other);
         }
@@ -36,6 +36,6 @@ namespace Bullet.View
             }
         }
 
-        protected abstract void CollideWithObject(Collider collider);
+        protected abstract void CollideWithObject(Collider2D collider);
     }
 }
