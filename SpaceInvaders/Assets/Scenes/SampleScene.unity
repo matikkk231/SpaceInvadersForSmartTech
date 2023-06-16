@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22efb357c62d6b344abd9d7eb818eb27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 4181831539552759242, guid: cf2bad1f8bbfff843b36e60d68f94082, type: 3}
+  _levelPrefab: {fileID: 4181831539552759242, guid: cf2bad1f8bbfff843b36e60d68f94082, type: 3}
   _levelConfig: {fileID: 11400000, guid: 7e450bd8b36d8984abc5c6f1c5930f01, type: 2}
 --- !u!4 &591351783
 Transform:
