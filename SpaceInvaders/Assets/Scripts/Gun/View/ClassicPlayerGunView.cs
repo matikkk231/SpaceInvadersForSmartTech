@@ -5,7 +5,7 @@ namespace Gun.View
 {
     public class ClassicPlayerGunView : GunView
     {
-        protected const int _bulletSpeed = 3;
+        private const int _bulletSpeed = 3;
 
         public override void Attack(int damage)
         {

@@ -9,10 +9,13 @@ namespace Monster
         public MonsterType Type;
         public Vector2Int Position;
         public int Reward;
+        public int Health;
+        public int Damage;
     }
 
     public enum MonsterType
     {
-        LittleMonster
+        LittleMonster,
+        MediumMonster
     }
 }

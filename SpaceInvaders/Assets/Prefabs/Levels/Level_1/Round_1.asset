@@ -16,7 +16,11 @@ MonoBehaviour:
   - Type: 0
     Position: {x: 1, y: 1}
     Reward: 1
-  - Type: 0
+    Health: 2
+    Damage: 3
+  - Type: 1
     Position: {x: 0, y: 0}
     Reward: 1
+    Health: 3
+    Damage: 1
   RoundSpeed: 1

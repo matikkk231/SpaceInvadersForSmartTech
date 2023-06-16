@@ -18,12 +18,11 @@ namespace Level.View
 
         public IMonsterView CreateMonsterView(MonsterType type, Vector2Int position, RoundConfig roundConfig)
         {
-            IMonsterView monster;
             foreach (var preset in _monsterPresets)
             {
                 if (preset.Type == type)
                 {
-                    monster = Instantiate(preset.MonsterPrefab).GetComponent<MonsterView>();
+                    IMonsterView monster = Instantiate(preset.MonsterPrefab).GetComponent<MonsterView>();
                     monster.Position =
                         new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
                     monster.SetDistanceBetweenPoints(_positionMeasure);

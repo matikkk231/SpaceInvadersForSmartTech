@@ -10,6 +10,11 @@ namespace Gun.View
         private float _secTillNextAttack;
         private const int _bulletSpeed = 1;
 
+        private void Start()
+        {
+            _secTillNextAttack = Random.Range(4, 8);
+        }
+
         private void Update()
         {
             _secTillNextAttack -= Time.deltaTime;
@@ -27,7 +32,7 @@ namespace Gun.View
             bulletView.DamageAmount = damage;
             bulletView.Velocity = Vector2.down * _bulletSpeed;
             bulletView.Position = _shootPosition.position;
-            _secTillNextAttack = Random.Range(2, 8);
+            _secTillNextAttack = Random.Range(4, 8);
         }
     }
 }

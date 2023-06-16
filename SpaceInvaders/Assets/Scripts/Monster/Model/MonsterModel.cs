@@ -38,15 +38,8 @@ namespace Monster.Model
             Type = config.Type;
             _levelScale = levelScale;
             Reward = config.Reward;
-
-            switch (Type)
-            {
-                case MonsterType.LittleMonster:
-                    Health = 1;
-                    Gun = new GunModel(1);
-                    break;
-                default: throw new Exception("monster type not found");
-            }
+            _health = config.Health;
+            Gun = new GunModel(config.Damage);
         }
 
         public void Move()
