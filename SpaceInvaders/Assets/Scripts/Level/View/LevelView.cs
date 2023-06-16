@@ -9,13 +9,9 @@ namespace Level.View
     public class LevelView : MonoBehaviour, ILevelView
     {
         [SerializeField] private GameObject _littleMonsterPref;
-        [SerializeField] private GameObject _playerPref;
+        [SerializeField] private GameObject _playerPrefab;
         private const float _positionMeasure = 1;
-        private IPlayerView _playerView;
-
-        public Vector2 LevelScale { get; set; }
-
-
+        
         public IMonsterView CreateMonsterView(MonsterType type, Vector2Int position, RoundConfig roundConfig)
         {
             var monster = Instantiate(_littleMonsterPref).GetComponent<MonsterView>();
@@ -28,10 +24,9 @@ namespace Level.View
 
         public IPlayerView CreatePlayerView(Vector2Int position)
         {
-            var player = Instantiate(_playerPref).GetComponent<IPlayerView>();
+            var player = Instantiate(_playerPrefab).GetComponent<IPlayerView>();
             player.Position =
                 new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
-            _playerView = player;
             player.Position = new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
             return player;
         }

@@ -14,7 +14,6 @@ namespace Level.Model
         Vector2Int LevelScale { get; }
         IPlayerModel Player { get; }
         List<RoundConfig> Rounds { get; }
-
         int CurrentRound { get; }
 
         void StartLevel();

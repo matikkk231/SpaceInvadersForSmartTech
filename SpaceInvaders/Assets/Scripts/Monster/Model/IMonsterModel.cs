@@ -15,7 +15,6 @@ namespace Monster.Model
         int Health { get; set; }
         IGunModel Gun { get; }
 
-        public void Attack();
         public void Move();
     }
 }

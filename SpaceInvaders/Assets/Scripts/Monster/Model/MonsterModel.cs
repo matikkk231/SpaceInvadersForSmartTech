@@ -47,11 +47,6 @@ namespace Monster.Model
             }
         }
 
-        public void Attack()
-        {
-            Gun.Attack();
-        }
-
         public void Move()
         {
             if (Position.x == _levelScale.x && (Position.y % 2 != 0))

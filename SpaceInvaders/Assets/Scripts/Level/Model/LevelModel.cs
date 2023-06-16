@@ -10,12 +10,13 @@ namespace Level.Model
 {
     public class LevelModel : ILevelModel
     {
+        public Action<RoundConfig, List<IMonsterModel>> RoundStarted { get; set; }
+
         private readonly List<RoundConfig> _rounds;
         private List<IMonsterModel> _monsters { get; set; }
         private IPlayerModel _player { get; set; }
         private int _currentRound;
         private const int _startPlayerHealth = 3;
-        public Action<RoundConfig, List<IMonsterModel>> RoundStarted { get; set; }
 
         public Vector2Int LevelScale { get; }
         public IPlayerModel Player => _player;
