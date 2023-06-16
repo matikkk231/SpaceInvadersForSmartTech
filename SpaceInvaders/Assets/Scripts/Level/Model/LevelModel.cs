@@ -13,6 +13,7 @@ namespace Level.Model
     {
         public Action<RoundConfig, List<IMonsterModel>> RoundStarted { get; set; }
         public Action LevelWon { get; set; }
+        public Action LevelLoosed { get; set; }
 
         private readonly List<RoundConfig> _rounds;
         private List<IMonsterModel> _monsters { get; set; }
@@ -66,6 +67,7 @@ namespace Level.Model
         private IPlayerModel SpawnPlayer()
         {
             _player = new PlayerModel(_startPlayerHealth);
+            _player.Died += OnPlayerDied;
             return _player;
         }
 
@@ -100,6 +102,13 @@ namespace Level.Model
                     break;
                 }
             }
+        }
+
+        private void OnPlayerDied()
+        {
+            _player.Died -= OnPlayerDied;
+            _player = null;
+            LevelLoosed?.Invoke();
         }
 
         private void StartNextRound()

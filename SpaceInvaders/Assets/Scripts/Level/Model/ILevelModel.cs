@@ -12,6 +12,7 @@ namespace Level.Model
     {
         Action<RoundConfig, List<IMonsterModel>> RoundStarted { get; set; }
         Action LevelWon { get; set; }
+        Action LevelLoosed { get; set; }
 
         Vector2Int LevelScale { get; }
         IPlayerModel Player { get; }

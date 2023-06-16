@@ -25,16 +25,23 @@ public class Entry : MonoBehaviour, IDisposable
     private void AddListeners()
     {
         _model.LevelWon += OnLevelWon;
+        _model.LevelLoosed += OnLevelLoosed;
     }
 
     private void RemoveListeners()
     {
         _model.LevelWon -= OnLevelWon;
+        _model.LevelLoosed -= OnLevelLoosed;
     }
 
     private void OnLevelWon()
     {
         Debug.Log("level WON!!!");
+    }
+
+    private void OnLevelLoosed()
+    {
+        Debug.Log("level LOOSED");
     }
 
     private void OnDestroy()
