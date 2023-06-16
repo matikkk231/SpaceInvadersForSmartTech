@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eaa4265eb484a0f8efb621bca5eaf77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _littleMonsterPref: {fileID: 2188367836729229243, guid: 20cd442edc4f1fa4f8224ea91c06c94d, type: 3}
+  _littleMonsterPrefab: {fileID: 2188367836729229243, guid: 20cd442edc4f1fa4f8224ea91c06c94d, type: 3}
   _playerPrefab: {fileID: 8069603775986295952, guid: 42ec65f6a90247e49bcd0e70fd5de243, type: 3}
+  _counterPrefab: {fileID: 9036157553872600815, guid: 7f38abd8c8251034c9bc1b40097b44ee, type: 3}

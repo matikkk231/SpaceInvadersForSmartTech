@@ -8,6 +8,7 @@ namespace Monster
     {
         public MonsterType Type;
         public Vector2Int Position;
+        public int Reward;
     }
 
     public enum MonsterType

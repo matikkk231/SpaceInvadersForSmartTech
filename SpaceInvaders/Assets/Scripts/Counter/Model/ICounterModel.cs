@@ -8,5 +8,6 @@ namespace Counter.Model
         Action<int> RoundChanged { get; set; }
 
         void IncreaseScore(int scorePoints);
+        void ChangeRound(int currentRound);
     }
 }

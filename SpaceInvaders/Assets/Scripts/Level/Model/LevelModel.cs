@@ -16,12 +16,12 @@ namespace Level.Model
         private readonly List<RoundConfig> _rounds;
         private List<IMonsterModel> _monsters { get; set; }
         private IPlayerModel _player { get; set; }
-        private ICounterModel _counter { get; set; }
         private int _currentRound;
         private const int _startPlayerHealth = 3;
 
         public Vector2Int LevelScale { get; }
         public IPlayerModel Player => _player;
+        public ICounterModel Counter { get; }
 
         public List<RoundConfig> Rounds
         {
@@ -38,6 +38,7 @@ namespace Level.Model
             _rounds = config.Rounds;
             LevelScale = config.Scale;
             _player = SpawnPlayer();
+            Counter = new CounterModel();
         }
 
         public void StartLevel()
@@ -95,7 +96,7 @@ namespace Level.Model
                 if (monster.Health <= 0)
                 {
                     monster.Died -= OnMonsterDied;
-                    Debug.Log("monsterDied");
+                    Counter.IncreaseScore(monster.Reward);
                     _monsters.Remove(monster);
 
                     if (_monsters.Count == 0)
@@ -111,6 +112,7 @@ namespace Level.Model
         private void StartNextRound()
         {
             _currentRound++;
+            Counter.ChangeRound(_currentRound);
             StartLevel();
         }
     }

@@ -14,6 +14,7 @@ namespace Monster.Model
         Vector2Int Position { get; }
         int Health { get; set; }
         IGunModel Gun { get; }
+        int Reward { get; }
 
         public void Move();
     }

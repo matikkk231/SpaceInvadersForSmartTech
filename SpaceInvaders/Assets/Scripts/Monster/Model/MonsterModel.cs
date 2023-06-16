@@ -30,12 +30,14 @@ namespace Monster.Model
         }
 
         public IGunModel Gun { get; }
+        public int Reward { get; }
 
         public MonsterModel(MonsterConfig config, Vector2Int levelScale)
         {
             Position = config.Position;
             Type = config.Type;
             _levelScale = levelScale;
+            Reward = config.Reward;
 
             switch (Type)
             {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Counter.Presenter;
 using Level.Model;
 using Level.View;
 using Monster.Model;
@@ -17,16 +18,13 @@ namespace Level.Presenter
         private readonly ILevelModel _model;
 
         private List<IDisposable> _disposables;
-        private List<IDisposable> _roudns;
         private List<IDisposable> _monsterPresenters;
-        private IDisposable _player;
 
         public LevelPresenter(ILevelView view, ILevelModel model)
         {
             _view = view;
             _model = model;
-            var startPlayerPosition = new Vector2Int(0, -_model.LevelScale.y);
-            _player = new PlayerPresenter(model.Player, _view.CreatePlayerView(startPlayerPosition));
+            OnLevelStarted();
             AddListeners();
         }
 
@@ -53,13 +51,40 @@ namespace Level.Presenter
             }
         }
 
-        public void Dispose()
+        private void OnLevelStarted()
         {
-            RemoveListeners();
+            _disposables = new List<IDisposable>();
+            
+            var startPlayerPosition = new Vector2Int(0, -_model.LevelScale.y);
+            _disposables.Add(new PlayerPresenter(_model.Player, _view.CreatePlayerView(startPlayerPosition)));
+            _disposables.Add(new CounterPresenter(_view.CreateCounterView(), _model.Counter));
+        }
+
+        private void DisposeMonsters()
+        {
             foreach (var monsterPresenter in _monsterPresenters)
             {
                 monsterPresenter.Dispose();
             }
+
+            _monsterPresenters.Clear();
+        }
+
+        private void DisposeOtherDisposables()
+        {
+            foreach (var disposable in _disposables)
+            {
+                disposable.Dispose();
+            }
+
+            _disposables.Clear();
+        }
+
+        public void Dispose()
+        {
+            RemoveListeners();
+            DisposeMonsters();
+            DisposeOtherDisposables();
         }
     }
 }
