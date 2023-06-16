@@ -1,5 +1,6 @@
 using System;
 using Gun.View;
+using UnityEngine;
 
 namespace Monster.View
 {
@@ -9,6 +10,7 @@ namespace Monster.View
         Action ReachedKeyPoint { get; set; }
 
         IGunView GunView { get; }
+        public Vector2 Position { get; set; }
 
         void GetDamage(int damageAmount);
         void Move(MovingDirection direction);

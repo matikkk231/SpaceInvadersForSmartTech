@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Counter.View;
 using Monster;
 using Monster.View;
@@ -9,19 +11,28 @@ namespace Level.View
 {
     public class LevelView : MonoBehaviour, ILevelView
     {
-        [SerializeField] private GameObject _littleMonsterPrefab;
+        [SerializeField] private List<MonsterPreset> _monsterPresets;
         [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private GameObject _counterPrefab;
         private const float _positionMeasure = 1;
 
         public IMonsterView CreateMonsterView(MonsterType type, Vector2Int position, RoundConfig roundConfig)
         {
-            var monster = Instantiate(_littleMonsterPrefab).GetComponent<MonsterView>();
-            monster.Position =
-                new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
-            monster.SetDistanceBetweenPoints(_positionMeasure);
-            monster.SetSpeed(roundConfig.RoundSpeed);
-            return monster;
+            IMonsterView monster;
+            foreach (var preset in _monsterPresets)
+            {
+                if (preset.Type == type)
+                {
+                    monster = Instantiate(preset.MonsterPrefab).GetComponent<MonsterView>();
+                    monster.Position =
+                        new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
+                    monster.SetDistanceBetweenPoints(_positionMeasure);
+                    monster.SetSpeed(roundConfig.RoundSpeed);
+                    return monster;
+                }
+            }
+
+            throw new Exception("monster type wasn't found");
         }
 
         public IPlayerView CreatePlayerView(Vector2Int position)
@@ -37,6 +48,13 @@ namespace Level.View
         {
             var counter = Instantiate(_counterPrefab).GetComponent<ICounterView>();
             return counter;
+        }
+
+        [Serializable]
+        private struct MonsterPreset
+        {
+            [SerializeField] public GameObject MonsterPrefab;
+            [SerializeField] public MonsterType Type;
         }
     }
 }

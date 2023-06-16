@@ -15,6 +15,8 @@ MonoBehaviour:
   MonsterConfigs:
   - Type: 0
     Position: {x: 1, y: 1}
+    Reward: 1
   - Type: 0
     Position: {x: 0, y: 0}
+    Reward: 1
   RoundSpeed: 1

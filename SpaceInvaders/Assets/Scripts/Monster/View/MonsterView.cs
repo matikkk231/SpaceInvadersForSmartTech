@@ -28,7 +28,7 @@ namespace Monster.View
         public Vector2 Position
         {
             get => transform.position;
-            set { transform.position = value; }
+            set => transform.position = value;
         }
 
         private void Update()
