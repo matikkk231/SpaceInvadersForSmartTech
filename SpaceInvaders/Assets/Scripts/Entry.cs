@@ -17,7 +17,7 @@ public class Entry : MonoBehaviour, IDisposable
     {
         _model = new LevelModel(_levelConfig);
         _view = Instantiate(_levelPrefab).GetComponent<ILevelView>();
-        _presenter = new LevelPresenter(_view, _model);
+        _presenter = new LevelPresenter(_view, _model, _levelConfig);
         _model.StartLevel();
         AddListeners();
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Counter.View;
+using Level.Config;
 using Monster;
 using Monster.View;
 using Player.View;
@@ -34,12 +35,17 @@ namespace Level.View
             throw new Exception("monster type wasn't found");
         }
 
-        public IPlayerView CreatePlayerView(Vector2Int position)
+        public IPlayerView CreatePlayerView(Vector2Int position, LevelConfig levelConfig)
         {
             var player = Instantiate(_playerPrefab).GetComponent<IPlayerView>();
             player.Position =
                 new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
             player.Position = new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
+            player.MaxPositionX = levelConfig.Scale.x * _positionMeasure;
+            player.MaxPositionY = levelConfig.Scale.y * _positionMeasure;
+            player.MinPositionX = -levelConfig.Scale.x * _positionMeasure;
+            player.MinPositionY = -levelConfig.Scale.y * _positionMeasure - _positionMeasure;
+
             return player;
         }
 

@@ -11,7 +11,12 @@ namespace Player.View
 
         IGunView Gun { get; set; }
 
-        Vector2 Position { get; set; }
+        float MaxPositionX { get; set; }
+        float MaxPositionY { get; set; }
+        float MinPositionX { get; set; }
+        float MinPositionY { get; set; }
+        Vector2 Position { set; }
+
 
         void GetDamage(int damage);
         void Die();

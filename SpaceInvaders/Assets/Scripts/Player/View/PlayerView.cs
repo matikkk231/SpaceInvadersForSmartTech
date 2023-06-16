@@ -13,7 +13,6 @@ namespace Player.View
 
         private float _speed = 3;
         private Vector2 _movingDirection;
-        private Vector2 _levelScale;
         [SerializeField] private GunView _gun;
         [SerializeField] private Rigidbody2D _rigidbody;
 
@@ -22,6 +21,11 @@ namespace Player.View
             get => _gun;
             set => _gun = (GunView) value;
         }
+
+        public float MaxPositionX { get; set; }
+        public float MaxPositionY { get; set; }
+        public float MinPositionX { get; set; }
+        public float MinPositionY { get; set; }
 
         public Vector2 Position
         {
@@ -51,22 +55,22 @@ namespace Player.View
         {
             _movingDirection = Vector2.zero;
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) && Position.x > MinPositionX)
             {
                 _movingDirection.x = -1;
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) && Position.x < MaxPositionX)
             {
                 _movingDirection.x = 1;
             }
 
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W) && Position.y < MaxPositionY)
             {
                 _movingDirection.y = 1;
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) && Position.y > MinPositionY)
             {
                 _movingDirection.y = -1;
             }

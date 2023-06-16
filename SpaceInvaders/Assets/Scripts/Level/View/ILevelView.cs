@@ -1,4 +1,5 @@
 using Counter.View;
+using Level.Config;
 using Monster;
 using Monster.View;
 using Player.View;
@@ -10,7 +11,7 @@ namespace Level.View
     public interface ILevelView
     {
         IMonsterView CreateMonsterView(MonsterType type, Vector2Int position, RoundConfig roundConfig);
-        IPlayerView CreatePlayerView(Vector2Int position);
+        IPlayerView CreatePlayerView(Vector2Int position, LevelConfig levelConfig);
         ICounterView CreateCounterView();
     }
 }
