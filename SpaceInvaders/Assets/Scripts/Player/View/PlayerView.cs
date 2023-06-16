@@ -12,7 +12,8 @@ namespace Player.View
         public Action AttackPressed { get; set; }
 
         private float _speed = 3;
-        private Vector2 _movingDirection = new Vector2();
+        private Vector2 _movingDirection;
+        private Vector2 _levelScale;
         [SerializeField] private GunView _gun;
         [SerializeField] private Rigidbody2D _rigidbody;
 

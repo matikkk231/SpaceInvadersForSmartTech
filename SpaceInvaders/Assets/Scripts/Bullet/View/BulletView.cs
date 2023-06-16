@@ -8,7 +8,7 @@ namespace Bullet.View
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] protected GameObject _gameObject;
         private float _timeInFly;
-        private const float _disappearingTime = 10;
+        private const float _disappearingTime = 9;
         public int DamageAmount { get; set; }
 
         public Vector2 Velocity

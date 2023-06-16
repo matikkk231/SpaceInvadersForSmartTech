@@ -12,6 +12,7 @@ namespace Level.Model
     public class LevelModel : ILevelModel
     {
         public Action<RoundConfig, List<IMonsterModel>> RoundStarted { get; set; }
+        public Action LevelWon { get; set; }
 
         private readonly List<RoundConfig> _rounds;
         private List<IMonsterModel> _monsters { get; set; }
@@ -22,16 +23,8 @@ namespace Level.Model
         public Vector2Int LevelScale { get; }
         public IPlayerModel Player => _player;
         public ICounterModel Counter { get; }
-
-        public List<RoundConfig> Rounds
-        {
-            get => _rounds;
-        }
-
-        public int CurrentRound
-        {
-            get => _currentRound;
-        }
+        public List<RoundConfig> Rounds => _rounds;
+        public int CurrentRound => _currentRound;
 
         public LevelModel(LevelConfig config)
         {
@@ -112,6 +105,12 @@ namespace Level.Model
         private void StartNextRound()
         {
             _currentRound++;
+            if (_currentRound >= _rounds.Count)
+            {
+                LevelWon?.Invoke();
+                return;
+            }
+
             Counter.ChangeRound(_currentRound);
             StartLevel();
         }

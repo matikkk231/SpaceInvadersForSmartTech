@@ -11,6 +11,7 @@ namespace Level.Model
     public interface ILevelModel
     {
         Action<RoundConfig, List<IMonsterModel>> RoundStarted { get; set; }
+        Action LevelWon { get; set; }
 
         Vector2Int LevelScale { get; }
         IPlayerModel Player { get; }

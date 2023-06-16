@@ -10,6 +10,7 @@ namespace Monster.Model
     {
         public Action<MovingDirection> Moved { get; set; }
         public Action Died { get; set; }
+        public Action MonsterWon { get; set; }
 
         private readonly Vector2Int _levelScale;
         private int _health;
@@ -79,6 +80,11 @@ namespace Monster.Model
             {
                 MoveLeft();
             }
+
+            if (CheckIsGameOver())
+            {
+                MonsterWon?.Invoke();
+            }
         }
 
         private void MoveDown()
@@ -100,6 +106,13 @@ namespace Monster.Model
             var oldPosition = Position;
             Position = new Vector2Int(oldPosition.x + 1, oldPosition.y);
             Moved?.Invoke(MovingDirection.Right);
+        }
+
+        private bool CheckIsGameOver()
+        {
+            var maxLevelPositionX = -_levelScale.x;
+            var maxLevelPositionY = -_levelScale.y;
+            return Position.x == maxLevelPositionX && Position.y == maxLevelPositionY;
         }
     }
 }

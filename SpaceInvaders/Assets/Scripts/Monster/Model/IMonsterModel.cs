@@ -9,6 +9,7 @@ namespace Monster.Model
     {
         Action<MovingDirection> Moved { get; set; }
         Action Died { get; set; }
+        Action MonsterWon { get; set; }
 
         MonsterType Type { get; }
         Vector2Int Position { get; }
