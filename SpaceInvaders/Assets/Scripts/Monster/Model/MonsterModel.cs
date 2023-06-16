@@ -14,7 +14,7 @@ namespace Monster.Model
         private readonly Vector2Int _levelScale;
         private int _health;
         public MonsterType Type { get; }
-        public Vector2Int Position { get; set; }
+        public Vector2Int Position { get; private set; }
 
         public int Health
         {
@@ -29,7 +29,7 @@ namespace Monster.Model
             }
         }
 
-        public IGunModel Gun { get; set; }
+        public IGunModel Gun { get; }
 
         public MonsterModel(MonsterConfig config, Vector2Int levelScale)
         {

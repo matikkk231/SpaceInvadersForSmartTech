@@ -1,3 +1,4 @@
+using Counter.View;
 using Monster;
 using Monster.View;
 using Player.View;
@@ -8,13 +9,14 @@ namespace Level.View
 {
     public class LevelView : MonoBehaviour, ILevelView
     {
-        [SerializeField] private GameObject _littleMonsterPref;
+        [SerializeField] private GameObject _littleMonsterPrefab;
         [SerializeField] private GameObject _playerPrefab;
+        [SerializeField] private GameObject _counterPrefab;
         private const float _positionMeasure = 1;
-        
+
         public IMonsterView CreateMonsterView(MonsterType type, Vector2Int position, RoundConfig roundConfig)
         {
-            var monster = Instantiate(_littleMonsterPref).GetComponent<MonsterView>();
+            var monster = Instantiate(_littleMonsterPrefab).GetComponent<MonsterView>();
             monster.Position =
                 new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
             monster.SetDistanceBetweenPoints(_positionMeasure);
@@ -29,6 +31,12 @@ namespace Level.View
                 new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
             player.Position = new Vector2(position.x * _positionMeasure, position.y * _positionMeasure);
             return player;
+        }
+
+        public ICounterView CreateCounterView()
+        {
+            var counter = Instantiate(_counterPrefab).GetComponent<ICounterView>();
+            return counter;
         }
     }
 }

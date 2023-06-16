@@ -16,6 +16,7 @@ namespace Level.Presenter
         private readonly ILevelView _view;
         private readonly ILevelModel _model;
 
+        private List<IDisposable> _disposables;
         private List<IDisposable> _roudns;
         private List<IDisposable> _monsterPresenters;
         private IDisposable _player;

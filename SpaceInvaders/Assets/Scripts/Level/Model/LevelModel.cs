@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Counter.Model;
 using Level.Config;
 using Monster.Model;
 using Player.Model;
@@ -15,6 +16,7 @@ namespace Level.Model
         private readonly List<RoundConfig> _rounds;
         private List<IMonsterModel> _monsters { get; set; }
         private IPlayerModel _player { get; set; }
+        private ICounterModel _counter { get; set; }
         private int _currentRound;
         private const int _startPlayerHealth = 3;
 
