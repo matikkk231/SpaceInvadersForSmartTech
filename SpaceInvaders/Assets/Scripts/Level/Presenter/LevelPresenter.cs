@@ -24,6 +24,8 @@ namespace Level.Presenter
         {
             _view = view;
             _model = model;
+            var startPlayerPosition = new Vector2Int(0, -_model.LevelScale.y);
+            _player = new PlayerPresenter(model.Player, _view.CreatePlayerView(startPlayerPosition));
             AddListeners();
         }
 
@@ -37,8 +39,7 @@ namespace Level.Presenter
             _model.RoundStarted -= OnRoundStarted;
         }
 
-        private void OnRoundStarted(RoundConfig roundConfig, List<IMonsterModel> monsterModels,
-            IPlayerModel playerModel)
+        private void OnRoundStarted(RoundConfig roundConfig, List<IMonsterModel> monsterModels)
         {
             _monsterPresenters = new List<IDisposable>();
             foreach (var monsterModel in monsterModels)
@@ -49,9 +50,6 @@ namespace Level.Presenter
                             _model.Rounds[_model.CurrentRound]),
                         monsterModel));
             }
-
-            var startPlayerPosition = new Vector2Int(0, -_model.LevelScale.y);
-            _player = new PlayerPresenter(playerModel, _view.CreatePlayerView(startPlayerPosition));
         }
 
         public void Dispose()

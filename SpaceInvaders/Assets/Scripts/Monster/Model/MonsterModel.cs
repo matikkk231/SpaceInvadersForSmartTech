@@ -13,7 +13,7 @@ namespace Monster.Model
 
         private readonly Vector2Int _levelScale;
         private int _health;
-        public MonsterType Type { get; set; }
+        public MonsterType Type { get; }
         public Vector2Int Position { get; set; }
 
         public int Health

@@ -10,14 +10,15 @@ namespace Level.Model
 {
     public class LevelModel : ILevelModel
     {
-        private List<RoundConfig> _rounds;
+        private readonly List<RoundConfig> _rounds;
         private List<IMonsterModel> _monsters { get; set; }
         private IPlayerModel _player { get; set; }
         private int _currentRound;
         private const int _startPlayerHealth = 3;
-        public Action<RoundConfig, List<IMonsterModel>, IPlayerModel> RoundStarted { get; set; }
+        public Action<RoundConfig, List<IMonsterModel>> RoundStarted { get; set; }
 
         public Vector2Int LevelScale { get; }
+        public IPlayerModel Player => _player;
 
         public List<RoundConfig> Rounds
         {
@@ -33,13 +34,13 @@ namespace Level.Model
         {
             _rounds = config.Rounds;
             LevelScale = config.Scale;
+            _player = SpawnPlayer();
         }
 
         public void StartLevel()
         {
             _monsters = SpawnMonsters(_rounds[_currentRound]);
-            _player = SpawnPlayer(_rounds[_currentRound]);
-            RoundStarted?.Invoke(_rounds[_currentRound], _monsters, _player);
+            RoundStarted?.Invoke(_rounds[_currentRound], _monsters);
             foreach (var monster in _monsters)
             {
                 monster.Move();
@@ -65,7 +66,7 @@ namespace Level.Model
             return monsters;
         }
 
-        private IPlayerModel SpawnPlayer(RoundConfig roundConfig)
+        private IPlayerModel SpawnPlayer()
         {
             _player = new PlayerModel(_startPlayerHealth);
             return _player;
@@ -93,9 +94,21 @@ namespace Level.Model
                     monster.Died -= OnMonsterDied;
                     Debug.Log("monsterDied");
                     _monsters.Remove(monster);
+
+                    if (_monsters.Count == 0)
+                    {
+                        StartNextRound();
+                    }
+
                     break;
                 }
             }
+        }
+
+        private void StartNextRound()
+        {
+            _currentRound++;
+            StartLevel();
         }
     }
 }
