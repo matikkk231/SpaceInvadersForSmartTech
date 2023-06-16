@@ -45,6 +45,11 @@ namespace Monster.Model
 
         public void Move()
         {
+            if (CheckIsGameOver())
+            {
+                MonsterWon?.Invoke();
+            }
+
             if (Position.x == _levelScale.x && (Position.y % 2 != 0))
             {
                 MoveDown();
@@ -80,11 +85,6 @@ namespace Monster.Model
             {
                 MoveLeft();
             }
-
-            if (CheckIsGameOver())
-            {
-                MonsterWon?.Invoke();
-            }
         }
 
         private void MoveDown()
@@ -110,9 +110,9 @@ namespace Monster.Model
 
         private bool CheckIsGameOver()
         {
-            var maxLevelPositionX = -_levelScale.x;
-            var maxLevelPositionY = -_levelScale.y;
-            return Position.x == maxLevelPositionX && Position.y == maxLevelPositionY;
+            var gameOverPosX = -_levelScale.x;
+            var gameOverPosY = -_levelScale.y - 1;
+            return Position.x == gameOverPosX && Position.y == gameOverPosY;
         }
     }
 }

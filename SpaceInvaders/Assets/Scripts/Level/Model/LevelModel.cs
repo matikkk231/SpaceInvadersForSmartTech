@@ -58,6 +58,7 @@ namespace Level.Model
 
                 var monster = new MonsterModel(monsterConfig, LevelScale);
                 monster.Died += OnMonsterDied;
+                monster.MonsterWon += OnMonsterWon;
                 monsters.Add(monster);
             }
 
@@ -108,6 +109,11 @@ namespace Level.Model
         {
             _player.Died -= OnPlayerDied;
             _player = null;
+            LevelLoosed?.Invoke();
+        }
+
+        private void OnMonsterWon()
+        {
             LevelLoosed?.Invoke();
         }
 
