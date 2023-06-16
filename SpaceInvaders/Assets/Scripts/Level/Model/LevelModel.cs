@@ -120,7 +120,7 @@ namespace Level.Model
         private void StartNextRound()
         {
             _currentRound++;
-            if (_currentRound >= _rounds.Count)
+            if (_currentRound + 1 > _rounds.Count)
             {
                 LevelWon?.Invoke();
                 return;

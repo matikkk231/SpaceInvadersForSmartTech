@@ -4,6 +4,7 @@ using Level.Model;
 using Level.Presenter;
 using Level.View;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Entry : MonoBehaviour, IDisposable
 {
@@ -36,12 +37,12 @@ public class Entry : MonoBehaviour, IDisposable
 
     private void OnLevelWon()
     {
-        Debug.Log("level WON!!!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().path);
     }
 
     private void OnLevelLoosed()
     {
-        Debug.Log("level LOOSED");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().path);
     }
 
     private void OnDestroy()
@@ -53,5 +54,6 @@ public class Entry : MonoBehaviour, IDisposable
     {
         _presenter?.Dispose();
         RemoveListeners();
+        _model = null;
     }
 }
